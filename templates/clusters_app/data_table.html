@@ -1,24 +1,27 @@
-<h3> Data table preview</h3>
-<table style="width:70%;  margin:50px; border:5px solid black; border-radius:50px;  padding:50px;">
-    <thead>
-        <tr>
-            <th>
-            </th>
-            {% for parameter in parameters %}
-            <th scope="col">
-                {{parameter}}
-            </th>
+<div id='PCAPlot'
+    style="width:90%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
+    <h3> Data table preview</h3>
+    <table style="width:70%;  margin:50px; border:5px solid black; border-radius:50px;  padding:50px;">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                {% for parameter in parameters %}
+                <th scope="col">
+                    {{parameter}}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for sample in samples %}
+            <tr>
+                {% for element in sample %}
+                <td>{{element}}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for sample in samples %}
-        <tr>
-            {% for element in sample %}
-            <td>{{element}}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
