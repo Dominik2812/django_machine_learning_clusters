@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Cluster Finder</title>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}"> Welcome <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% include 'clusters_app/load_data_form.html' %}
+
+
+
+
+    <div id='globalwrapper'
+        style="background-color: rgba(247, 222, 222, 0.671); float: left; width: 75%; border-radius:50px; padding:20px; margin:20px;">
+
+        {% include 'clusters_app/dim_red_plot.html' %}
+        {% include 'clusters_app/data_table.html' %}
+        {% block main %}
+
+        {% endblock %}
+    </div>
+
+
+</body>
+
+</html>

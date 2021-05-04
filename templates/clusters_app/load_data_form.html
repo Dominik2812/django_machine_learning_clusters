@@ -1,0 +1,29 @@
+<div
+    style="background-color: rgb(218, 209, 209); float: left; width: 20%; border-radius:5%; padding:20px; margin:20px;">
+    <div class="container pt-1">
+        <h1>Load Data</h1>
+
+        {% if not url %}
+        <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            {{ form.base_data }}
+            <button type="submit" class="btn btn-primary m-3 p-3">
+                submit
+            </button>
+        </form>
+        {% else %}
+        <form action="{% url 'results' %}" method="POST">
+            {% csrf_token %}
+            {{ form.base_data }}
+            {{ form.number_of_expected_clusters }}
+            <button type="submit" class="btn btn-primary m-3 p-3">
+                submit
+            </button>
+        </form>
+        {% endif %}
+
+
+
+
+    </div>
+</div>

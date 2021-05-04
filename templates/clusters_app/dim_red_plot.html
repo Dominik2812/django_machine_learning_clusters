@@ -1,0 +1,31 @@
+<h1> Projection in 2D via Principal Component Analysis </h1>
+{% if kmeans_plot %}
+<div id='PCAPlot'
+    style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
+    <h3>PCA</h3>
+    <div style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
+
+        {% autoescape off %}
+        {{ kmeans_plot }}
+        {% endautoescape %}
+
+    </div>
+</div>
+{% endif %}
+
+{% if projection_plot %}
+<div id='PCAPlot'
+    style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
+    <h3>PCA</h3>
+    <div style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
+
+        {% autoescape off %}
+        {{ projection_plot }}
+        {% endautoescape %}
+
+
+    </div>
+</div>
+
+
+{% endif %}
