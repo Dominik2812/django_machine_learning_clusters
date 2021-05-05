@@ -65,16 +65,18 @@ class DimReduction(ClusterBaseData):
     # both are stored as a ProjectionIn2D object
     # Returns Plot
 
-    def make_plot(self, pca_table, classified=False):
+    def make_plot(self, original_data, pca_table, classified=False):
         hover = dict()
-        for col in pca_table.columns:
-            hover[col] = pca_table[col]
+        for col in original_data.columns:
+            hover[col] = original_data[col]
+        print("hover:", hover)
+        print("df_plot,df_plot", pca_table)
         if classified == False:
-            fig = px.scatter(pca_table, x="C1", y="C2")  # , hover_data=hover)
+            fig = px.scatter(pca_table, x="C1", y="C2", hover_data=hover)
         elif classified == True:
             fig = px.scatter(
-                pca_table, x="C1", y="C2", color="classification"
-            )  # , hover_data=hover)
+                pca_table, x="C1", y="C2", color="classification", hover_data=hover
+            )
         fig.update_layout(showlegend=False)
         pca_plot = plot(fig, output_type="div")
         return pca_plot
@@ -109,8 +111,10 @@ class DimReduction(ClusterBaseData):
         kmeans=pd.DataFrame(columns=["C1", "C2", "classification"]),
         classified=False,
     ):
+        print("project_2D, classified", classified)
         # Check whether the projection (identified by url) already exist in the database
         url = form.cleaned_data["base_data"]
+
         try:
             PI2D = ProjectionIn2D.objects.get(
                 url=url, kmeans=kmeans
@@ -118,18 +122,24 @@ class DimReduction(ClusterBaseData):
             pca_plot = PI2D.plot
             if classified == False:
                 pca_table = PI2D.data
+                print("I went to classified: False")
             else:
                 pca_table = PI2D.kmeans
+                print("I went to classified: True")
+            print("project_2D, IN DB")
         except:
+            print("project_2D, NOT in DB")
             base_data_table = BaseData.objects.get(url=url)
             PI2D = ProjectionIn2D()
 
-            pd_frame = self.base_data(url)
-            pca_table = self.make_pca(pd_frame)
+            original_data = self.base_data(url)
+            pca_table = self.make_pca(original_data)
             if classified == False:
-                pca_plot = self.make_plot(pca_table)
+                pca_plot = self.make_plot(original_data, pca_table)
+                print("I went to classified: False")
             else:
-                pca_plot = self.make_plot(kmeans, classified=True)
+                pca_plot = self.make_plot(original_data, kmeans, classified=True)
+                print("I went to classified: True")
             PI2D.kmeans = kmeans
 
             # Create an object and save it to in database
@@ -140,7 +150,11 @@ class DimReduction(ClusterBaseData):
                 base_data_table,
             )
             PI2D.save()
-        return pca_plot, pca_table
+        print("project_2D, pca_table", pca_table)
+        if classified == False:
+            return pca_plot, pca_table
+        else:
+            return pca_plot, kmeans
 
 
 class Cluster(DimReduction):
@@ -163,6 +177,7 @@ class Cluster(DimReduction):
 
     def plot_clusters(self, form, number_of_expected_clusters):
         km_table = self.kmeans_analysis(form, number_of_expected_clusters)
+        print("plot_clusters", km_table)
         return self.project_in_2D(form, km_table, classified=True)
 
 
@@ -204,15 +219,15 @@ class ResultsView(IndexView):
         )
         url = form.cleaned_data["base_data"]
         original_data = self.base_data(url)
-        original_data_classified = pd.concat(
-            [original_data, kmeans_data_table["classification"]], axis=1
-        )
+        # print(kmeans_data_table)
+        classification = kmeans_data_table["classification"]
+        original_data_classified = pd.concat([original_data, classification], axis=1)
         samples, parameters = self.data_table(original_data_classified)
         context["kmeans_plot"] = kmeans_plot
         context["kmeans_data_table"] = kmeans_data_table
         context["samples"] = samples
         context["parameters"] = parameters
 
-        original_data_classified.to_csv("./iris-testData-100perc.csv")
+        original_data_classified.to_csv("./data/clustered data.csv")
 
         return self.render_to_response(context)
