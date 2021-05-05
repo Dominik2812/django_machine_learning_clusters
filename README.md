@@ -3,7 +3,7 @@
 ![afterAnalysis](snapshots/clusters.png?raw=true "afterAnalysis")
 
 ## Motivation
-A rapid simple methode to find clusters in multidimensional data set. 
+A rapid simple methode to find clusters in multidimensional data set. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
 
 
 ## How to use it
