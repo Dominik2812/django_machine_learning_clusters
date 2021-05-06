@@ -3,11 +3,17 @@
 ![afterAnalysis](snapshots/clusters.png?raw=true "afterAnalysis")
 
 ## Motivation
-A rapid simple methode to find clusters in multidimensional data set. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
+Visualize, classify your complex multidimensional datasets with only two clicks. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
 
 
 ## How to use it
-### Loading the data sets
+<p float="left">
+  <img src="snapshots/load_data.png" width="100" />
+  <img src="snapshots/projection.png" width="100" /> 
+  <img src="snapshots/cluster.png" width="100" />
+</p>
+
+
 
 ### Classify
 ### What do the results mean?
