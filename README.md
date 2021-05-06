@@ -5,18 +5,23 @@
 
 
 ## Motivation
-Visualize, classify your complex multidimensional datasets with only two clicks. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
+Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
 
 
 ## How to use it
-<p float="left">
-  <img src="snapshots/load_data.png" width="100" />
-  <img src="snapshots/projection.png" width="100" /> 
-  <img src="snapshots/cluster.png" width="100" />
-</p>
+Load unclassified datasets from your local machine or remote resources via url. 
+
+<img src="snapshots/load_data.png" width="1000" />
 
 
+The dataset is then projected in two dimansions via Prioncipal Component Analysis (**PCA**). A plotly express scatter plot will be displayed as in the the following snapshot. Underneath you find the head of the datatable you just loaded. Type the number of clusters (or increment by arrows) that you expect, meaning how many clusters do you see in the plot. Submit again.
+<img src="snapshots/projection.png" width="1000" /> 
 
+Datapoints are now assigned to clusters in both, the plot and the datatable underneath. The classification has taken place via the k_Means_Algorithm. THe classified multidimenaional data locally stored in the data folder. 
+
+<img src="snapshots/clusters.png" width="1000" />
+
+Test the application withj the iris data under data/iris-test-data.csv
 ### Classify
 ### What do the results mean?
 
