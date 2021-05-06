@@ -1,32 +1,20 @@
-
 {% if kmeans_plot %}
-<h1> Kmeans Cluster Analysis </h1>
-<div id='PCAPlot'
-    style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
-    <h3>PCA</h3>
-    <div style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
 
-        {% autoescape off %}
-        {{ kmeans_plot }}
-        {% endautoescape %}
-
-    </div>
+<div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded w-75 ">
+    <h3> Kmeans Cluster Analysis </h3>
+    {% autoescape off %}
+    {{ kmeans_plot }}
+    {% endautoescape %}
 </div>
 {% endif %}
 
 {% if projection_plot %}
-<h1> This is how you Data looks like after Projection in 2D via Principal Component Analysis </h1>
-<div id='PCAPlot'
-    style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
-    <h3>PCA</h3>
-    <div style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
 
-        {% autoescape off %}
-        {{ projection_plot }}
-        {% endautoescape %}
-
-
-    </div>
+<div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded w-75">
+    <h3> Principal Component Analysis </h3>
+    {% autoescape off %}
+    {{ projection_plot }}
+    {% endautoescape %}
 </div>
 
 

@@ -7,37 +7,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <title>Cluster Finder</title>
 </head>
 
-<body>
+<body class="container d-flex flex-column justify-content-center text-center">
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' %}"> Welcome <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'index' %}"> Welcome </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    {% include 'clusters_app/load_data_form.html' %}
 
 
 
 
-    <div id='globalwrapper'
-        style="background-color: rgba(247, 222, 222, 0.671); float: left; width: 75%; border-radius:50px; padding:20px; margin:20px;">
-
-        {% include 'clusters_app/dim_red_plot.html' %}
-        {% include 'clusters_app/data_table.html' %}
-        {% block main %}
-
-        {% endblock %}
+    <div class="container d-flex justify-content-between m-3 p-3 border bg-light rounded">
+        <div class="d-flex flex-column w-100">
+            <div class="d-flex flex-row justify-content-between w-100">
+                {% include 'clusters_app/load_data_form.html' %}
+                {% include 'clusters_app/dim_red_plot.html' %}
+            </div>
+            {% include 'clusters_app/data_table.html' %}
+        </div>
     </div>
 
 
