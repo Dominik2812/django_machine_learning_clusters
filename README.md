@@ -3,8 +3,6 @@
 <p align="center">
   <img width="700"src="snapshots/abstract.png">
 </p>
-![abstract](?raw=true "abstract")
-
 
 ## Motivation
 Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
