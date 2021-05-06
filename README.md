@@ -1,6 +1,8 @@
 # machine_learning_clusters
-![afterAnalysis](snapshots/load_data.png?raw=true "afterAnalysis")
-![afterAnalysis](snapshots/clusters.png?raw=true "afterAnalysis")
+
+
+![abstract](snapshots/abstract.png?raw=true "abstract")
+
 
 ## Motivation
 Visualize, classify your complex multidimensional datasets with only two clicks. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
