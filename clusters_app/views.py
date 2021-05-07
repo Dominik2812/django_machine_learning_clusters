@@ -12,18 +12,24 @@ from sklearn.cluster import KMeans
 import plotly.express as px
 from plotly.offline import plot
 
-#########################################################################################################################################################################
-#########################################################################################################################################################################
-# First step is to read in a dataset which is achieved by this class
-# self.load_data uses content of form to create url => uses base_data(url) to get dataset => uses data_table to transform the data
-# self. base_data uses the url from the form. Reads the data from the database.
-# If no Pickle object is present in the database to the given url.
-# Is being used by self.data_table and DimRed.projection_in_2D
-# self.data_table uses base_data, provides list for templates:
-# Takes the pd_frame from base_data and transforms it to a list, which can be read by the template and diplayed as a Data Table
-#########################################################################################################################################################################
-#########################################################################################################################################################################
+
+#############################################################################################################################
+#############################################################################################################################
+# Part 1 : Data processing 
+#############################################################################################################################
+#############################################################################################################################
+
 class ClusterBaseData:
+    """
+    First step is to read in a dataset which is achieved by this class
+    self.load_data uses content of form to create url => uses base_data(url) to get dataset => uses data_table to transform the data
+    self. base_data uses the url from the form. Reads the data from the database.
+    If no Pickle object is present in the database to the given url.
+    Is being used by self.data_table and DimRed.projection_in_2D
+    self.data_table uses base_data, provides list for templates:
+    Takes the pd_frame from base_data and transforms it to a list, which can be read by the template and diplayed as a Data Table
+    """
+
     def load_data(self, form):
         url = form.cleaned_data["base_data"]
         data = self.base_data(url)
@@ -57,16 +63,15 @@ class ClusterBaseData:
         return samples, parameters
 
 
-#########################################################################################################################################################################
-#########################################################################################################################################################################
-# Receives multidimensional data in pd_frame from ClusterBaseData.base_data
-# Transforms the pd_frame into a 2D table and a 2D plot via self.make_pca and self.make_plot and respectively
-# Those methods will be called in self.project_in_2D and store the 2D table and 2D plot in the database as a ProjectionIn2D object
-# Depending on the parameter classified either base_data or kmeans id projected into 2D and plotted.
-# Returns Plot
-#########################################################################################################################################################################
-#########################################################################################################################################################################
 class DimReduction(ClusterBaseData):
+    """
+    Receives multidimensional data in pd_frame from ClusterBaseData.base_data
+    Transforms the pd_frame into a 2D table and a 2D plot via self.make_pca and self.make_plot and respectively
+    Those methods will be called in self.project_in_2D and store the 2D table and 2D plot in the database as a ProjectionIn2D object
+    Depending on the parameter classified either base_data or kmeans id projected into 2D and plotted.
+    Returns Plot
+    """
+
     def make_plot(self, original_data, pca_table, classified=False):
         hover = dict()
         for col in original_data.columns:
@@ -92,7 +97,6 @@ class DimReduction(ClusterBaseData):
             components = PCA(n_components=2).fit_transform(values, classification)
             pca_table = pd.DataFrame(data=components, columns=["C1", "C2"])
             pca_table = pd.concat([pca_table, pd_frame[["classification"]]], axis=1)
-
         return pca_table
 
     def split(self, pd_frame):
@@ -100,7 +104,6 @@ class DimReduction(ClusterBaseData):
         features.remove("classification")
         X = pd_frame.loc[:, features].values
         y = pd_frame["classification"]
-
         return X, y
 
     def project_in_2D(
@@ -144,13 +147,12 @@ class DimReduction(ClusterBaseData):
             return pca_plot, kmeans
 
 
-#########################################################################################################################################################################
-#########################################################################################################################################################################
-# self.kmeans_analysis receives url and expected clusters from the form
-# It loads the bsae_data projects it in 2D and calculates the classification via sklearn.cluster.Kmeans
-#########################################################################################################################################################################
-#########################################################################################################################################################################
 class Cluster(DimReduction):
+    """
+    self.kmeans_analysis receives url and expected clusters from the form
+    It loads the bsae_data projects it in 2D and calculates the classification via sklearn.cluster.Kmeans
+    """
+
     def kmeans_analysis(self, form, number_of_expected_clusters):
         url = form.cleaned_data["base_data"]
         pd_frame = self.base_data(url)
@@ -173,15 +175,21 @@ class Cluster(DimReduction):
         return self.project_in_2D(form, km_table, classified=True)
 
 
-#########################################################################################################################################################################
-#########################################################################################################################################################################
-# Uses BaseDataInputForm to create the object form, which contains the url
-# Applies the url to ClusterBaseData.loadData, from which it receives two lists: samples and parameters
-# Sends samples, parameters to index.html with which the templete data_table.html is supplied to display the head of the data
-# Applies DimReduction.project_in_2D to receive the projection_plot.
-#########################################################################################################################################################################
-#########################################################################################################################################################################
+
+#############################################################################################################################
+#############################################################################################################################
+# Part 2 : The actual views
+#############################################################################################################################
+#############################################################################################################################
+
 class IndexView(TemplateView, FormView, Cluster):
+    """
+    Uses BaseDataInputForm to create the object form, which contains the url
+    Applies the url to ClusterBaseData.loadData, from which it receives two lists: samples and parameters
+    Sends samples, parameters to index.html with which the templete data_table.html is supplied to display the head of the data
+    Applies DimReduction.project_in_2D to receive the projection_plot.
+    """
+
     template_name = "index.html"
     form_class = BaseDataInputForm
 
@@ -208,15 +216,14 @@ class IndexView(TemplateView, FormView, Cluster):
         return context
 
 
-#########################################################################################################################################################################
-#########################################################################################################################################################################
-# Uses BaseDataInputForm to create the object form, which contains the url and the number_of_expected_clusters
-# Applies the both parameters to make a kmeams_analysis via Cluster.plot_clusters, which provides the  kmeans_plot, kmeans_data_table
-# Sends samples, parameters to index.html with which the templete data_table.html is supplied to display the head of the original_data with the classification
-# Saves the rsult as csv
-#########################################################################################################################################################################
-#########################################################################################################################################################################
 class ResultsView(IndexView):
+    """
+    Uses BaseDataInputForm to create the object form, which contains the url and the number_of_expected_clusters
+    Applies the both parameters to make a kmeams_analysis via Cluster.plot_clusters, which provides the  kmeans_plot, kmeans_data_table
+    Sends samples, parameters to index.html with which the templete data_table.html is supplied to display the head of the original_data with the classification
+    Saves the rsult as csv
+    """
+
     def form_valid(self, form):
         context = self.get_context_data()
 
