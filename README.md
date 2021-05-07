@@ -33,7 +33,19 @@ Test the application with the iris data under data/iris-test-data.csv
 ### models.py
 Pandas Frames and plots are stored as PickleFireldobjects. 
 
+
+<p align="center">
+  <img src="snapshots/models.png" width="800" />
+</p>
+
+
 ### forms.py
+
+
+<p align="center">
+  <img src="snapshots/forms.png" width="800" />
+</p>
+
 
 ### views.py
 In the following I will roughly explain how the views.py works, for a detailed explanation please read teh comments in the file itself. The views.py consists of two parts, one that processes your data set and one for the actual views. Througout both parts classes inherit from top to bottom. 
