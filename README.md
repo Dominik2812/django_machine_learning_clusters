@@ -36,7 +36,7 @@ Pandas Frames and plots are stored as PickleFireldobjects.
 ### forms.py
 
 ### views.py
-In the following I will roughly explain how the views.py works, for a detailed explanation please read teh comments in the file itself. The views.py consists of two parts, one that processes your data set and one for the actual views. Througout both parts classes inherit from top to bottom. The first part has three classes. The first step is to read in a dataset which is achieved by the class **ClusterBaseData**. The dataset is then saved as a pickle Object in the database. 
+In the following I will roughly explain how the views.py works, for a detailed explanation please read teh comments in the file itself. The views.py consists of two parts, one that processes your data set and one for the actual views. Througout both parts classes inherit from top to bottom. The first part has three classes. The first step is to read in a dataset which is achieved by the class **ClusterBaseData**. The dataset is then saved as a pickle object in the database for future analysis. The **DimReduction** class projects the muiltidimensional data into two dimensions via PCA and saves both, a datatable and a plot of the new 2D dataset. This class is applied twice, for the raw (yet unclassified) data and the classified data. The latter will be delivered by the class **Cluster**
 
 
 
