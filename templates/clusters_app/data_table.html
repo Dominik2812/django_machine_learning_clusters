@@ -1,36 +1,12 @@
 {% if url %}
-{% if not kmeans_plot %}
+
 <div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded">
+    {% if not kmeans_plot %}
     <h3> Head of the original data </h3>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                </th>
-                {% for parameter in parameters %}
-                <th scope="col">
-                    {{parameter}}
-                </th>
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for sample in samples %}
-            <tr>
-                {% for element in sample %}
-                <td>{{element}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-</div>
-{% endif %}
-
-{% if kmeans_plot %}
-<div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded">
+    {% endif %}
+    {% if kmeans_plot %}
     <h3> Head of classified data </h3>
+    {% endif %}
     <table>
         <thead>
             <tr>
@@ -55,5 +31,5 @@
         </tbody>
     </table>
 </div>
-{% endif %}
+
 {% endif %}

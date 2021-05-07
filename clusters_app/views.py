@@ -138,7 +138,6 @@ class DimReduction(ClusterBaseData):
                 base_data_table,
             )
             PI2D.save()
-        print("project_2D, pca_table", pca_table)
         if classified == False:
             return pca_plot, pca_table
         else:

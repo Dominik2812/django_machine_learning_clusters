@@ -1,21 +1,20 @@
-{% if kmeans_plot %}
-
+{% if url %}
 <div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded w-75 ">
+    {% if kmeans_plot %}
     <h3> Kmeans Cluster Analysis </h3>
     {% autoescape off %}
     {{ kmeans_plot }}
     {% endautoescape %}
-</div>
-{% endif %}
+    {% endif %}
 
-{% if projection_plot %}
-
-<div class="card d-flex justify-content-center m-3 p-3 border bg-light rounded w-75">
+    {% if projection_plot %}
     <h3> Principal Component Analysis </h3>
     {% autoescape off %}
     {{ projection_plot }}
     {% endautoescape %}
+    {% endif %}
 </div>
-
-
 {% endif %}
+
+
+
