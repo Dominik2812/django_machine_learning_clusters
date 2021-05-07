@@ -11,16 +11,19 @@ Visualize and classify complex multidimensional datasets with only two clicks.  
 ## How to use it
 Load unclassified datasets from your local machine or remote resources via url. 
 
-<img src="snapshots/load_data.png" width="1000" />
+<p align="center">
+  <img src="snapshots/load_data.png" width="800" />
+</p>
 
+The dataset is then projected in two dimensions via Principal Component Analysis (**PCA**). A plotly express scatter plot will be displayed as in the following snapshot. Underneath you find the head of the data table you just loaded. Type the number of clusters (or increment by arrows) that you expect, meaning how many clusters do you see in the plot. Submit again.
+<p align="center">
+  <img src="snapshots/projection.png" width="800" /> 
+</p>
+Datapoints are now assigned to clusters in both, the plot and the data table underneath. The classification has taken place via the k_Means_Algorithm. The classified multidimensional data locally stored in the data folder for further processing. E.g. classify new data with my supervised machine learning application **DjangoMachineLearning**.
 
-The dataset is then projected in two dimansions via Prioncipal Component Analysis (**PCA**). A plotly express scatter plot will be displayed as in the the following snapshot. Underneath you find the head of the datatable you just loaded. Type the number of clusters (or increment by arrows) that you expect, meaning how many clusters do you see in the plot. Submit again.
-<img src="snapshots/projection.png" width="1000" /> 
-
-Datapoints are now assigned to clusters in both, the plot and the datatable underneath. The classification has taken place via the k_Means_Algorithm. The classified multidimenaional data locally stored in the data folder for further processing. E.g. classify new data with my supervised machinelearning application **DjangoMachineLearning**.
-
-<img src="snapshots/clusters.png" width="1000" />
-
+<p align="center">
+  <img src="snapshots/clusters.png" width="800" />
+</p>
 Test the application with the iris data under data/iris-test-data.csv
 
 
@@ -48,7 +51,6 @@ Pandas Frames and plots are stored as PickleFireldobjects.
 
 
 #### yet to be done
-
 
 
 
