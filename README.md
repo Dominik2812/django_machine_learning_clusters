@@ -49,16 +49,3 @@ If a dataset is has already beíng processed by the app, the same calculation do
 <p align="center">
   <img src="snapshots/models.png" width="800" />
 </p>
-
-
-### forms.py
-
-<p align="center">
-  <img src="snapshots/forms.png" width="800" />
-</p>
-
-
-
-
-
-
