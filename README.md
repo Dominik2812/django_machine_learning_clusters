@@ -28,7 +28,7 @@ Test the application with the iris data under data/iris-test-data.csv
 
 ## Crucial parts of the code
 
-### The dataflow
+
 
 ### models.py
 Pandas Frames and plots are stored as PickleFireldobjects. 
@@ -42,8 +42,12 @@ The first part has three classes. The first step is to read in a dataset which i
 
 The second part of views.py contains two views. THe IndexView inherits from **FormView** and **TemplateView** to process the inputform and the results in the same time. It also inherits all methods of the dataprocessing part by the class **Clusters**. Initially only the form is displayed. On submitting the url, the 2D plot and the head of the datatable of the original nonclassified data is shown. If then the number of expected clusters is submited the class **ResultsView** is called which has basically the same structure but processes the clustered data instead of the nonclassified. 
 
+THe following graph illustrates the dataflow within the views.py. circles, squares and triangulars represent variables, classes and templates respectively. Red, violet and green distiguish between classes from models.py, dataprocessing classes and views. 
 
 
+<p align="center">
+  <img src="snapshots/dataflow.png" width="800" />
+</p>
 
 
 
