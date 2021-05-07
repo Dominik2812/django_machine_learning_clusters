@@ -1,30 +1,32 @@
 # machine_learning_clusters
-![afterAnalysis](snapshots/load_data.png?raw=true "afterAnalysis")
-![afterAnalysis](snapshots/clusters.png?raw=true "afterAnalysis")
+
+<p align="center">
+  <img width="700"src="snapshots/abstract.png">
+</p>
 
 ## Motivation
-Visualize, classify your complex multidimensional datasets with only two clicks. The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
+Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
 
 
 ## How to use it
-<p float="left">
-  <img src="snapshots/load_data.png" width="100" />
-  <img src="snapshots/projection.png" width="100" /> 
-  <img src="snapshots/cluster.png" width="100" />
-</p>
+Load unclassified datasets from your local machine or remote resources via url. 
+
+<img src="snapshots/load_data.png" width="1000" />
 
 
+The dataset is then projected in two dimansions via Prioncipal Component Analysis (**PCA**). A plotly express scatter plot will be displayed as in the the following snapshot. Underneath you find the head of the datatable you just loaded. Type the number of clusters (or increment by arrows) that you expect, meaning how many clusters do you see in the plot. Submit again.
+<img src="snapshots/projection.png" width="1000" /> 
 
-### Classify
-### What do the results mean?
+Datapoints are now assigned to clusters in both, the plot and the datatable underneath. The classification has taken place via the k_Means_Algorithm. The classified multidimenaional data locally stored in the data folder for further processing. E.g. classify new data with my supervised machinelearning application **DjangoMachineLearning**.
 
-#### "Test" data results and crossvalidation
+<img src="snapshots/clusters.png" width="1000" />
 
-#### To which samples belong the points in the graphs
+Test the application with the iris data under data/iris-test-data.csv
+
+
 
 
 #### Get a feeling for the meaning of the results with createTestData.py
-If you are not familiar with machine learning algorithms, it is important to get at least a rough idea of how to interpret the results. One way to achive this is to get "artificial experience" with different test datasets. For that use createTestData.py, which generates artificial test datasets on the base of your model data. Random samples from the model dataset are picked and a random number in the order of magnoitude of the roiginal value is added. How big this deviation is can be controlled by the deviationFactor (range: 0-1,recommended <0.1). The size of the artificial dataset is tunes by the fractionFactor (range: 0-1). Play around with different test datasets. 
 
 ## Details of the code in this project and lessons to be learned
 ### Crucial logics
