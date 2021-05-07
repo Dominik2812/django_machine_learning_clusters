@@ -28,25 +28,6 @@ Test the application with the iris data under data/iris-test-data.csv
 
 ## Crucial parts of the code
 
-
-
-### models.py
-Pandas Frames and plots are stored as PickleFireldobjects. 
-
-
-<p align="center">
-  <img src="snapshots/models.png" width="800" />
-</p>
-
-
-### forms.py
-
-
-<p align="center">
-  <img src="snapshots/forms.png" width="800" />
-</p>
-
-
 ### views.py
 In the following I will roughly explain how the views.py works, for a detailed explanation please read teh comments in the file itself. The views.py consists of two parts, one that processes your data set and one for the actual views. Througout both parts classes inherit from top to bottom. 
 
@@ -59,6 +40,21 @@ THe following graph illustrates the dataflow within the views.py. circles, squar
 
 <p align="center">
   <img src="snapshots/dataflow.png" width="800" />
+</p>
+
+
+### models.py
+If a dataset is has already beíng processed by the app, the same calculation doesn't have to be done over and over again.  This is why all teh results are saved as instances of two classes in the database. The attrributes of the corresponding classes also serve as identifiers. Data frames and plots are stored as a PickledObjectField(). The class **BaseData** contains the original nonclassified dataset. The class **ProjectionIn2D** containsthe PCA projection of both, the original (nonclassified) and the clustered (by k-Means classified) dataset. 
+
+<p align="center">
+  <img src="snapshots/models.png" width="800" />
+</p>
+
+
+### forms.py
+
+<p align="center">
+  <img src="snapshots/forms.png" width="800" />
 </p>
 
 
