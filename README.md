@@ -26,31 +26,18 @@ Datapoints are now assigned to clusters in both, the plot and the data table und
 </p>
 Test the application with the iris data under data/iris-test-data.csv
 
+## Crucial parts of the code
 
-
-
-#### Get a feeling for the meaning of the results with createTestData.py
-
-## Details of the code in this project and lessons to be learned
-### Crucial logics
-
-###### Note: the URls of the model data and teh test data are also passed from view to view by meeans of hidden input forms such as the following
-
-### How to get Plotly graphs from the views.py to a template 
-
-
-
-
+### The dataflow
 
 ### models.py
-
-###### Note: The objects in the database are mainly identified by the url of the csv. Any modification in the original csv file (such as additional or corrected data) will thus only be recognized if the url is changed as well. 
 Pandas Frames and plots are stored as PickleFireldobjects. 
 
-#### deficites of the code
+### forms.py
 
+### views.py
+In the following I will roughly explain how the views.py works, for a detailed explanation please read teh comments in the file itself. The views.py consists of two parts, one that processes your data set and one for the actual views. Througout both parts classes inherit from top to bottom. The first part has three classes. The first step is to read in a dataset which is achieved by the class **ClusterBaseData**. The dataset is then saved as a pickle Object in the database. 
 
-#### yet to be done
 
 
 
