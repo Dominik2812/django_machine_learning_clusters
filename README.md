@@ -5,7 +5,7 @@
 </p>
 
 ## Motivation
-Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **MyDirtyDjango/DjangoMachineLearning/** repository
+Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **django_how_to_section/django_machine_learning_supervised_classification** repository
 
 
 ## How to use it
