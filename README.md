@@ -5,7 +5,7 @@
 </p>
 
 ## Motivation
-Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **django_how_to_section/django_machine_learning_supervised_classification** repository. In contrast to the latter, the project here is build with Django's Class Based Views.
+Visualize and classify complex multidimensional datasets with only two clicks.  The app can be used in combination with my **django_machine_learning_supervised_classification** repository. In contrast to the latter, the project here is build with Django's Class Based Views.
 
 
 ## How to use it
